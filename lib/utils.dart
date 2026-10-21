@@ -13,8 +13,16 @@ dynamic pick(Map? m, List<String> keys) {
 
 String fmtDate(dynamic v) {
   if (v == null) return '';
-  final s = v.toString().replaceFirst('T', ' ');
-  return s.length > 16 ? s.substring(0, 16) : s;
+  final s = v.toString();
+  DateTime? d = DateTime.tryParse(s);
+  if (d == null) return s.replaceFirst('T', ' ');
+  // Server lưu UTC (không có hậu tố Z) -> coi là UTC rồi đổi sang giờ máy
+  if (!s.endsWith('Z') && !RegExp(r'[+-]\d{2}:\d{2}$').hasMatch(s)) {
+    d = DateTime.utc(d.year, d.month, d.day, d.hour, d.minute, d.second);
+  }
+  d = d.toLocal();
+  String two(int n) => n.toString().padLeft(2, '0');
+  return '${d.year}-${two(d.month)}-${two(d.day)} ${two(d.hour)}:${two(d.minute)}';
 }
 
 String summarize(Map m, {List<String> skip = const ['id']}) {
