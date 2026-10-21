@@ -1,0 +1,29 @@
+name: tathanhmanh_2380604510
+description: "He thong diem danh sinh vien - Bai kiem tra mon hoc"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  http: ^1.2.0
+  flutter_dotenv: ^5.1.0
+  shared_preferences: ^2.2.2
+  jwt_decoder: ^2.0.1
+  local_auth: ^2.1.8
+  geolocator: ^11.0.0
+  image_picker: ^1.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
