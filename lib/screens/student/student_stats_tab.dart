@@ -74,7 +74,7 @@ class _StatsTabState extends State<StatsTab> {
   }
 
   Widget _card(Map<String, dynamic> m) {
-    final ti = (m['tiLeVang'] is num) ? (m['tiLeVang'] as num).toDouble() : 0.0;
+    final ti = ((m['tiLeVang'] is num) ? (m['tiLeVang'] as num).toDouble() : 0.0).clamp(0.0, 100.0);
     final c = _color(ti);
     final danger = ti >= 20;
     return Card(

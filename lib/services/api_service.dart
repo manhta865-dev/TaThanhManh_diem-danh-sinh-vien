@@ -63,8 +63,11 @@ class ApiService {
       return d.whereType<Map>().map((e) => Map<String, dynamic>.from(e)).toList();
     }
     if (d is Map) {
-      for (final k in ['data', 'items', 'result', 'results', '\$values']) {
+      for (final k in ['data', 'items', 'result', 'results', 'danhSach', 'danhSachCanhBao', '\$values']) {
         if (d[k] != null) return _toList(d[k]);
+      }
+      for (final v in d.values) {
+        if (v is List) return _toList(v);
       }
     }
     return [];

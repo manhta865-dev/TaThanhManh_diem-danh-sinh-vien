@@ -416,15 +416,17 @@ class _StatsTabState extends State<_StatsTab> {
             ),
           for (final w in _warn)
             Card(
-              color: const Color(0xFFFFEBEE),
+              color: '${w['mucDoCanhBao']}' == 'CamThi' ? const Color(0xFFFFEBEE) : const Color(0xFFFFF3E0),
               child: ListTile(
                 leading: const CircleAvatar(
                   backgroundColor: Colors.white,
                   child: Icon(Icons.warning_amber_rounded, color: Colors.red),
                 ),
-                title: Text('${pick(w, ['hoTen', 'tenSinhVien', 'maSV', 'maSv']) ?? 'Sinh viên'}',
+                title: Text('${w['hoTen'] ?? 'Sinh viên'} (${w['maSV'] ?? ''})',
                     style: const TextStyle(fontWeight: FontWeight.w600)),
-                subtitle: Text(summarize(w)),
+                subtitle: Text('Vắng ${w['soBuoiVang'] ?? 0}/${w['tongSoBuoi'] ?? 0} buổi • '
+                    '${w['tiLeVangPhanTram'] ?? 0}%\n${w['khuyenNghi'] ?? ''}'),
+                isThreeLine: true,
               ),
             ),
         ],
